@@ -1,25 +1,38 @@
 <form (ngSubmit)="createPerson()">
     <input id="name" name="name" type="text" placeholder="Digite o nome" [(ngModel)]="person.name"><br>
-    <input id="birth" name="birth" type="date" palceholder="Nascimento" [(ngModel)]="person.birthDate"><br>
-    <input id="death" name="death" type="date" palceholder="Falecimento" [(ngModel)]="person.deathDate"><br>
-    <!-- <label for="marriedTo">Casado(a) com </label>
-    <select name="marriedTo">
-        <option value="Jorge">Jorge</option>
-        <option value="Fred">Fred</option>
-    </select><br>
-    <label for="firstParent">Filho(a) de </label>
-    <select name="firstParent">
-        <option value="Jorge">Jorge</option>
-        <option value="Fred">Fred</option>
-    </select>
-    <label for="secondParent"> e </label>
-    <select name="secondParent">
-        <option value="Jorge">Jorge</option>
-        <option value="Fred">Fred</option>
-    </select><br> -->
-    <input type="submit" value="Adicionar">
+    ★ <input id="birth" name="birth" type="date" palceholder="Nascimento" [(ngModel)]="person.birthDate">
+    ✟ <input id="death" name="death" type="date" palceholder="Falecimento" [(ngModel)]="person.deathDate"><br>
+    <div *ngIf="personList.length >= 1">
+        <label for="marriedTo">Casado(a) com </label>
+        <select name="marriedTo" [(ngModel)]="person.marriedTo">
+            <option></option>
+            <option *ngFor="let selectPerson of personList" value="{{ selectPerson.id }}">{{ selectPerson.name }}</option>
+        </select><br>
+    </div>
+    <div *ngIf="personList.length >= 2">
+        <label for="firstParent">Filho(a) de </label>
+        <select name="firstParent" [(ngModel)]="person.firstParent">
+            <option></option>
+            <option *ngFor="let selectPerson of personList" value="{{ selectPerson.id }}">{{ selectPerson.name }}</option>
+        </select>
+        <label for="secondParent"> e </label>
+        <select name="secondParent" [(ngModel)]="person.secondParent">
+            <option></option>
+            <option *ngFor="let selectPerson of personList" value="{{ selectPerson.id }}">{{ selectPerson.name }}</option>
+        </select><br>
+    </div>
+    <input type="submit" value="Adicionar" *ngIf="person.name && !+person.name">
 </form>
 
-<!-- <h3>{{ person.name }}</h3>
-<h3>{{ person.birthDate }}</h3>
-<h3>{{ person.deathDate }}</h3> -->
+<div *ngFor="let person of personList" class="flex-container">
+    <table>
+        <tr>
+            <th>nome</th>
+            <th>id</th>
+        </tr>
+        <tr>
+            <td>{{ person.name }}</td>
+            <td>{{ person.id }}</td>
+        </tr>
+    </table>
+</div>
