@@ -1,0 +1,25 @@
+<form (ngSubmit)="createPerson()">
+    <input id="name" name="name" type="text" placeholder="Digite o nome" [(ngModel)]="person.name"><br>
+    <input id="birth" name="birth" type="date" palceholder="Nascimento" [(ngModel)]="person.birthDate"><br>
+    <input id="death" name="death" type="date" palceholder="Falecimento" [(ngModel)]="person.deathDate"><br>
+    <!-- <label for="marriedTo">Casado(a) com </label>
+    <select name="marriedTo">
+        <option value="Jorge">Jorge</option>
+        <option value="Fred">Fred</option>
+    </select><br>
+    <label for="firstParent">Filho(a) de </label>
+    <select name="firstParent">
+        <option value="Jorge">Jorge</option>
+        <option value="Fred">Fred</option>
+    </select>
+    <label for="secondParent"> e </label>
+    <select name="secondParent">
+        <option value="Jorge">Jorge</option>
+        <option value="Fred">Fred</option>
+    </select><br> -->
+    <input type="submit" value="Adicionar">
+</form>
+
+<!-- <h3>{{ person.name }}</h3>
+<h3>{{ person.birthDate }}</h3>
+<h3>{{ person.deathDate }}</h3> -->
