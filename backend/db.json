@@ -1,43 +1,5 @@
 {
   "persons": [
-    {
-      "name": "Chica",
-      "id": 1
-    },
-    {
-      "name": "José",
-      "marriedTo": "1",
-      "id": 2
-    },
-    {
-      "name": "Ceiça",
-      "marriedTo": "",
-      "firstParent": "1",
-      "secondParent": "2",
-      "id": 3
-    },
-    {
-      "name": "Carlos",
-      "marriedTo": "3",
-      "id": 4
-    },
-    {
-      "name": "Adolfo Borges",
-      "id": 5
-    },
-    {
-      "name": "Blinbeu Blinbado",
-      "marriedTo": "",
-      "firstParent": "-1",
-      "secondParent": "-1",
-      "id": 6
-    },
-    {
-      "name": "Eeeeeeee",
-      "marriedTo": "",
-      "firstParent": "",
-      "secondParent": "",
-      "id": 7
-    }
+    
   ]
 }
