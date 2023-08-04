@@ -1,13 +1,20 @@
 .flex-container {
     display: inline-flex;
+    margin-top: 20px;
+}
+
+.flex-container > div {
+    display: inline-flex;
+    border: 2px solid black;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.deleteButton {
+    background-color: tomato;
+    border: 2px solid red;
 }
 
 form, input, select {
     margin-bottom: 5px;
-}
-
-table {
-    border: 2px solid black;
-    margin-bottom: 5px;
-    margin-inline: 5px;
 }

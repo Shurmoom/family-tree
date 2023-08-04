@@ -39,9 +39,14 @@ export class CreatePersonComponent implements OnInit {
       return;
     }
     this.person.name = capitalize(this.person.name);
-    this.service.create(this.person).subscribe();
-    this.updateList();
-    this.clear();
+    this.service.create(this.person).subscribe(() => {
+      this.updateList();
+      this.clear();
+    });
+  }
+
+  deletePerson(id: number): void {
+    this.service.delete(id).subscribe(() => this.updateList());
   }
 
 }

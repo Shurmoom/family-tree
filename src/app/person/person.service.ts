@@ -20,4 +20,13 @@ export class PersonService {
     return this.httpClient.get<Person[]>(this.API);
   }
 
+  update() {
+
+  }
+
+  delete(id: number): Observable<Person> {
+    const url = `${this.API}/${id}`;
+    return this.httpClient.delete<Person>(url);
+  }
+
 }

@@ -2,6 +2,14 @@
     <input id="name" name="name" type="text" placeholder="Digite o nome" [(ngModel)]="person.name"><br>
     ★ <input id="birth" name="birth" type="date" palceholder="Nascimento" [(ngModel)]="person.birthDate">
     ✟ <input id="death" name="death" type="date" palceholder="Falecimento" [(ngModel)]="person.deathDate"><br>
+    <div>
+        <label for="gender">Gênero: </label>
+        <select name="gender" [(ngModel)]="person.gender">
+            <option></option>
+            <option value="male">Feminino</option>
+            <option value="male">Masculino</option>
+        </select>
+    </div>
     <div *ngIf="personList.length >= 1">
         <label for="marriedTo">Casado(a) com </label>
         <select name="marriedTo" [(ngModel)]="person.marriedTo">
@@ -21,18 +29,18 @@
             <option *ngFor="let selectPerson of personList" value="{{ selectPerson.id }}">{{ selectPerson.name }}</option>
         </select><br>
     </div>
-    <input type="submit" value="Adicionar" *ngIf="person.name && !+person.name">
+    <!-- *ngIf="person.name && !+person.name" -->
+    <input type="submit" value="Adicionar">
 </form>
 
-<div *ngFor="let person of personList" class="flex-container">
-    <table>
-        <tr>
-            <th>nome</th>
-            <th>id</th>
-        </tr>
-        <tr>
-            <td>{{ person.name }}</td>
-            <td>{{ person.id }}</td>
-        </tr>
-    </table>
+<div *ngFor="let personContent of personList" class="flex-container">
+    <div>
+        <table>
+            <tr>
+                <td>{{ personContent.name }}</td>
+                <td><button (click)="deletePerson(personContent.id!)">❌</button></td>
+                <td><button>✏️</button></td>
+            </tr>
+        </table>
+    </div>
 </div>
