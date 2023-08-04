@@ -11,7 +11,7 @@ import { capitalize } from 'src/utils/utils';
 export class CreatePersonComponent implements OnInit {
 
   person: Person = {
-    name: '',
+    name: ''
   }
 
   personList: Person[] = [];
@@ -39,10 +39,19 @@ export class CreatePersonComponent implements OnInit {
       return;
     }
     this.person.name = capitalize(this.person.name);
-    this.service.create(this.person).subscribe(() => {
+    this.service.create(this.person).subscribe((createdPerson) => {
+      if (!!createdPerson.marriedTo) {
+        this.service.findById(createdPerson.marriedTo).subscribe((marriedPerson) => {
+          this.service.update(marriedPerson.id!, { ...marriedPerson, marriedTo: createdPerson.id }).subscribe();
+        })
+      }
       this.updateList();
-      this.clear();
+      this.clear();  
     });
+  }
+
+  updatePerson(id: number, person: Person): void {
+    this.service.update(id, person).subscribe();
   }
 
   deletePerson(id: number): void {

@@ -20,13 +20,19 @@ export class PersonService {
     return this.httpClient.get<Person[]>(this.API);
   }
 
-  update() {
-
+  update(id: number, person: Person) {
+    const url = `${this.API}/${id}`;
+    return this.httpClient.put<Person>(url, person); 
   }
 
   delete(id: number): Observable<Person> {
     const url = `${this.API}/${id}`;
     return this.httpClient.delete<Person>(url);
+  }
+
+  findById(id: number): Observable<Person> {
+    const url = `${this.API}/${id}`;
+    return this.httpClient.get<Person>(url);
   }
 
 }
