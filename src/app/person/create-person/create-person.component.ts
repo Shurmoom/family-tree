@@ -1,61 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { Person } from '../person';
-import { PersonService } from '../person.service';
+import { Component, Input } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 import { capitalize } from 'src/utils/utils';
+import { PersonService } from '../person.service';
 
 @Component({
   selector: 'app-create-person',
   templateUrl: './create-person.component.html',
   styleUrls: ['./create-person.component.css']
 })
-export class CreatePersonComponent implements OnInit {
+export class CreatePersonComponent {
 
-  person: Person = {
-    name: ''
-  }
-
-  personList: Person[] = [];
+  @Input() super!: AppComponent;
 
   constructor (
     private service: PersonService,
   ) { }
 
-  updateList(): void {
-    this.service.readAll().subscribe((persons) => {
-      this.personList = persons;
-    });
-  }
-
-  ngOnInit(): void {
-    this.updateList();
-  }
-
-  clear(): void {
-    this.person = {} as Person;
-  }
-
   createPerson(): void {
-    if (!this.person.name) {
+    if (!this.super.person.name) {
       return;
     }
-    this.person.name = capitalize(this.person.name);
-    this.service.create(this.person).subscribe((createdPerson) => {
+    this.super.person.name = capitalize(this.super.person.name);
+    if (this.super.editing) {
+      this.service.update(this.super.person.id!, this.super.person).subscribe((createdPerson) => {
+        if (!!createdPerson.marriedTo) {
+          this.service.findById(createdPerson.marriedTo).subscribe((marriedPerson) => {
+            this.service.update(marriedPerson.id!, { ...marriedPerson, marriedTo: createdPerson.id }).subscribe();
+          })
+        }
+        this.super.updateList();
+        this.super.clearPerson();
+        this.super.editing = false;
+      });
+      return;
+    }
+    this.service.create(this.super.person).subscribe((createdPerson) => {
       if (!!createdPerson.marriedTo) {
         this.service.findById(createdPerson.marriedTo).subscribe((marriedPerson) => {
           this.service.update(marriedPerson.id!, { ...marriedPerson, marriedTo: createdPerson.id }).subscribe();
         })
       }
-      this.updateList();
-      this.clear();  
+      this.super.updateList();
+      this.super.clearPerson();  
     });
-  }
-
-  updatePerson(id: number, person: Person): void {
-    this.service.update(id, person).subscribe();
-  }
-
-  deletePerson(id: number): void {
-    this.service.delete(id).subscribe(() => this.updateList());
   }
 
 }
