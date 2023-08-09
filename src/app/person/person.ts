@@ -1,4 +1,5 @@
 export interface Person {
+    layer?: number;
     name: string;
     gender?: string;
     id?: number;

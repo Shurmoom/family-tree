@@ -1,56 +1,29 @@
 {
   "persons": [
     {
-      "name": "Maria Da Conceição",
-      "gender": "female",
+      "name": "Chica",
       "id": 1,
       "marriedTo": 2,
-      "firstParent": "7"
+      "layer": 0
     },
     {
-      "name": "Carlos Roberto",
-      "gender": "male",
-      "marriedTo": 1,
-      "id": 2
+      "name": "Zé",
+      "marriedTo": "1",
+      "id": 2,
+      "layer": 0
     },
     {
-      "name": "Mateus",
-      "birthDate": "1997-03-29",
-      "gender": "male",
+      "name": "Maria",
       "firstParent": "1",
-      "secondParent": "2",
       "id": 3,
-      "marriedTo": 4
+      "secondParent": "2",
+      "layer": 1
     },
     {
-      "name": "Débora",
-      "birthDate": "1999-04-03",
-      "gender": "female",
+      "name": "Carlos",
       "marriedTo": "3",
-      "id": 4
-    },
-    {
-      "name": "Daniel",
-      "gender": "male",
-      "firstParent": "1",
-      "secondParent": "2",
-      "id": 5
-    },
-    {
-      "name": "Leandro",
-      "firstParent": "1",
-      "secondParent": "2",
-      "id": 6
-    },
-    {
-      "name": "Chica",
-      "id": 7,
-      "marriedTo": 8
-    },
-    {
-      "name": "José Da Banana",
-      "marriedTo": "7",
-      "id": 8
+      "id": 4,
+      "layer": 0
     }
   ]
 }

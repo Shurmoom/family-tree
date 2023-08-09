@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { PersonService } from '../person.service';
 import { Person } from '../person';
+import { PersonComponent } from '../person/person.component';
 
 @Component({
   selector: 'app-list-persons',
@@ -10,7 +11,7 @@ import { Person } from '../person';
 })
 export class ListPersonsComponent {
 
-  @Input() super!: AppComponent;
+  @Input() super!: PersonComponent;
 
   constructor (
     private service: PersonService,

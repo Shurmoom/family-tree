@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { capitalize } from 'src/utils/utils';
 import { PersonService } from '../person.service';
+import { PersonComponent } from '../person/person.component';
 
 @Component({
   selector: 'app-create-person',
@@ -10,7 +11,7 @@ import { PersonService } from '../person.service';
 })
 export class CreatePersonComponent {
 
-  @Input() super!: AppComponent;
+  @Input() super!: PersonComponent;
 
   constructor (
     private service: PersonService,
