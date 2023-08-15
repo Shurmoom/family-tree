@@ -29,3 +29,7 @@
     <input type="submit" value="Salvar" *ngIf="super.editing">
     <button style="margin-left: 5px;" (click)="super.clearPerson(); super.editing=false">Cancelar</button>
 </form>
+
+<div style="margin-bottom: 10px;">
+    <button (click)="super.updateList()">🔄</button>
+</div>

@@ -13,8 +13,10 @@ export class PersonComponent implements OnInit {
   };
   personList: Person[] = [];
   editing = false;
+  maxLayer = 0;
+  formatedList: Person[][] = [];
 
-  constructor (
+  constructor(
     private service: PersonService,
   ) { }
 
@@ -25,6 +27,8 @@ export class PersonComponent implements OnInit {
   updateList(): void {
     this.service.readAll().subscribe((persons) => {
       this.personList = persons;
+      this.updateLocalList();
+      console.log(this.personList);
     });
   }
 
@@ -38,10 +42,38 @@ export class PersonComponent implements OnInit {
     return this.findPaths(+thisPerson.firstParent, acc + 1);
   }
 
-  calculateAll(): void {
-    this.personList.forEach((person) => {
+  private updateByPaths(): void {
+    this.personList.forEach((person, index) => {
       const layerNumber = this.findPaths(person.id!, 0);
-      this.service.update(person.id!, { ...person, layer: layerNumber}).subscribe();
-    })
+      if (layerNumber > this.maxLayer) {
+        this.maxLayer = layerNumber;
+      }
+      this.personList[index] = { ...person, layer: layerNumber };
+    });
+  }
+
+  private matchPartnersByHighestPath(): void {
+    this.personList.forEach((person, index) => {
+      if (person.marriedTo) {
+        const partner = this.personList.find((partner) => +partner.id! === +person.marriedTo!)!;
+        if (person.layer! < partner.layer!) {
+          this.personList[index] = { ...person, layer: partner.layer };
+        }
+      }
+    });
+  }
+
+  private formatList(): void {
+    const list = [];
+    for (let i = 0; i <= this.maxLayer; i++) {
+      list.push(this.personList.filter((person) => person.layer === i));
+    }
+    this.formatedList = list;
+  }
+
+  private updateLocalList(): void {
+    this.updateByPaths();
+    this.matchPartnersByHighestPath();
+    this.formatList();
   }
 }

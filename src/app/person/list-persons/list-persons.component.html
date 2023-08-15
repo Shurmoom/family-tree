@@ -1,11 +1,13 @@
-<div *ngFor="let person of super.personList" class="flex-container">
-    <div>
-        <table>
-            <tr>
-                <td>{{ person.name }}</td>
-                <td><button (click)="deletePerson(person.id!)">❌</button></td>
-                <td><button (click)="editPerson(person)">✏️</button></td>
-            </tr>
-        </table>
+<div *ngFor="let list of super.formatedList">
+    <div *ngFor="let person of list" class="flex-container">
+        <div>
+            <table>
+                <tr>
+                    <td>{{ person.name }}</td>
+                    <td><button (click)="deletePerson(person.id!)">❌</button></td>
+                    <td><button (click)="editPerson(person)">✏️</button></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
