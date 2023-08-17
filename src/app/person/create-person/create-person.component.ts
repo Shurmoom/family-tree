@@ -22,6 +22,9 @@ export class CreatePersonComponent {
       return;
     }
     this.super.person.name = capitalize(this.super.person.name);
+    if (this.super.person.marriedTo) this.super.person.marriedTo = +this.super.person.marriedTo;
+    if (this.super.person.firstParent) this.super.person.firstParent = +this.super.person.firstParent;
+    if (this.super.person.secondParent) this.super.person.secondParent = +this.super.person.secondParent;
     if (this.super.editing) {
       this.service.update(this.super.person.id!, this.super.person).subscribe((createdPerson) => {
         if (!!createdPerson.marriedTo) {
