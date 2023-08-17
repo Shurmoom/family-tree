@@ -28,7 +28,6 @@ export class PersonComponent implements OnInit {
     this.service.readAll().subscribe((persons) => {
       this.personList = persons;
       this.updateLocalList();
-      console.log(this.personList);
     });
   }
 
